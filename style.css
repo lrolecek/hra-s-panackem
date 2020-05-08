@@ -19,20 +19,20 @@ body {
 	height: 100vh;
 	background-color: var(--pozadi);
 	background-repeat: repeat;
-	background-image: url('obrazky/pozadi/geometry.png');
+	background-image: url('images/pozadi/geometry.png');
 
 	/*  vyzkoušej i jiná pozadí :)
-	background-image: url('obrazky/pozadi/round.png');
-	background-image: url('obrazky/pozadi/china.png');
-	background-image: url('obrazky/pozadi/newyear.png');
-	background-image: url('obrazky/pozadi/spiration.png');
-	background-image: url('obrazky/pozadi/whirlpool.png');
-	background-image: url('obrazky/pozadi/weather.png');
-	background-image: url('obrazky/pozadi/school.png');
-	background-image: url('obrazky/pozadi/swirl.png');
-	background-image: url('obrazky/pozadi/seigaiha.png');
-	background-image: url('obrazky/pozadi/hypnotize.png');
-	background-image: url('obrazky/pozadi/giftly.png');
+	background-image: url('images/pozadi/round.png');
+	background-image: url('images/pozadi/china.png');
+	background-image: url('images/pozadi/newyear.png');
+	background-image: url('images/pozadi/spiration.png');
+	background-image: url('images/pozadi/whirlpool.png');
+	background-image: url('images/pozadi/weather.png');
+	background-image: url('images/pozadi/school.png');
+	background-image: url('images/pozadi/swirl.png');
+	background-image: url('images/pozadi/seigaiha.png');
+	background-image: url('images/pozadi/hypnotize.png');
+	background-image: url('images/pozadi/giftly.png');
 	*/
 }
 
