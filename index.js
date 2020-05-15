@@ -37,10 +37,33 @@ const panacek = {
 	element: document.querySelector('#panacek')
 };
 
+const mince = {
+	x: 0,
+	y: 0,
+	sirka: 36,
+	vyska: 36,
+	element: document.querySelector('#mince')
+};
+
+const zvukMince = document.querySelector('#zvukmince');
+
+
+
+let score = 0;
+const scoreEl = document.querySelector('#score');
+
+
+
+
+nastavNahodnouPozici(panacek);
+nastavNahodnouPozici(mince);
+
 // zavoláme funkci umisti, která nastaví CSS vlastnosti elementu
 // panáčka tak, aby se na obrazovce posunul na souřadnice nastavené
 // v jeho X a Y
-umisti();
+umisti(panacek);
+umisti(mince);
+
 
 // na stránce budeme naslouchat události keydown - stisk klávesy
 // pokud uživatel stiskne klávesu, zavolá se funkce posunPanacka
@@ -116,7 +139,23 @@ function posunPanacka(e) {
 	// panáčka. Nyní zavoláme funkci umisti(), která tyto souřadnice
 	// nastaví do CSS vlastností left a top HTML elementu, čimž panáčka
 	// na nové souřadnice posune
-	umisti();
+	umisti(panacek);
+
+	// zjistime, jestli panacek nesebral minci
+	if ( kolize(panacek, mince) ) {
+
+		// došlo ke kolizi = panáček sebral minci
+		// přehrajeme zvuk
+		zvukMince.play();
+		// vygenerujeme novou náhodnou pozici mince
+		nastavNahodnouPozici(mince);
+		// a minci na ní přesuneme
+		umisti(mince);
+
+		// zvetsim skore
+		score++;
+		scoreEl.textContent = score;
+	}
 
 }
 
@@ -126,7 +165,29 @@ function posunPanacka(e) {
 // Vezme souřadnice X a Y panáčka a nastaví je do CSS vlastností left a top
 // elementu panáčka, čímž ho na dané souřadnice posune na obrazovce.
 // CSS vlastnosti left a top musíme nastavovat včetně jednotky, takže za čísla
-function umisti() {
-	panacek.element.style.left = `${panacek.x}px`;
-	panacek.element.style.top = `${panacek.y}px`;
+function umisti(obj) {
+	obj.element.style.left = `${obj.x}px`;
+	obj.element.style.top = `${obj.y}px`;
+}
+
+
+
+
+// sirka okna prohlizece: window.innerWidth
+// vyska okna prohlizece: window.innerHeight
+function nastavNahodnouPozici(obj) {
+	obj.x = Math.floor( Math.random() * (window.innerWidth - obj.sirka) );
+	obj.y = Math.floor( Math.random() * (window.innerHeight - obj.vyska) );
+}
+
+
+// funkce, která jako parametr přijíma dva objekty
+// objekty musí mít vlastnosti x, y, sirka, vyska
+// funkce zjistí, zda se obdélníky těchto dvou objektů neprotínají
+// a podle toho vrátí hodnotu true nebo false
+function kolize(a, b) {
+	return (!( a.x + a.sirka < b.x
+		|| b.x + b.sirka < a.x
+		|| a.y + a.vyska < b.y
+		|| b.y + b.vyska < a.y));
 }
